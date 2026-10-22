@@ -1,0 +1,34 @@
+name: Import arXiv v1 LaTeX sources
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/import-arxiv.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import-sources:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve source archives and validate extraction
+        run: python scripts/import_arxiv_sources.py
+      - name: Commit immutable source snapshots
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/
+          if ! git diff --staged --quiet; then
+            git commit -m 'Archive original arXiv v1 LaTeX sources for five Kelly papers'
+            git push
+          fi
