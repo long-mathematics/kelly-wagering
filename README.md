@@ -4,13 +4,11 @@ Mathematical foundations, information-theoretic methods, optimization algorithms
 
 Manuscript author: **Christopher D. Long**.
 
-## A question raised by Whitrow (2007)
+## Questions raised in the literature
 
-[Whitrow, *Algorithms for Optimal Allocation of Bets on Many Simultaneous Events* (2007), p. 622](https://doi.org/10.1111/j.1467-9876.2007.00594.x) observed numerically that, when relatively few independent bets are made simultaneously, their optimal sizes are nearly proportional to the isolated single-bet Kelly stakes. He explicitly suggested that a proof of this tentative hypothesis would be worthwhile.
+[Whitrow, *Algorithms for Optimal Allocation of Bets on Many Simultaneous Events* (2007), p. 622](https://doi.org/10.1111/j.1467-9876.2007.00594.x) observed that optimal simultaneous bets appear nearly proportional to isolated Kelly stakes and proposed proving this phenomenon.
 
-- **Rigorous weak-edge explanation of Whitrow's observation** — [Optimal Parlay Wagering and Whitrow Asymptotics](output/pdf/2603.26620-parlays-whitrow.pdf). For independent events in a low-edge regime on a fixed active support, the simultaneous singles-only optimizer agrees with the separately optimized eventwise stakes through second order. Its first correction is a **cubic, event-specific scalar shrinkage**; permitting multiplicatively priced parlays improves optimal log-growth by at most fourth order. This provides an asymptotic answer to Whitrow's proposed proof question, **not** an unrestricted proportionality theorem for arbitrary odds, support changes, or nearly exhausted cash.
-
-No other result in this repository is currently identified as a resolution of a comparably explicit, previously posed open conjecture. Other theorems and extensions are described in the paper summaries and [research status](docs/RESEARCH_STATUS.md).
+- **Whitrow's near-proportionality observation** — [Optimal Parlay Wagering and Whitrow Asymptotics](output/pdf/2603.26620-parlays-whitrow.pdf). For independent events with small edges and fixed active support, simultaneous singles-only stakes agree with isolated stakes through second order, with a cubic, event-specific shrinkage. This provides an **asymptotic explanation**, not a general proportionality theorem.
 
 ## Current papers
 
