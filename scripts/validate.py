@@ -126,7 +126,7 @@ def main() -> None:
             raise ValueError("Known MathJax regression accepted: " + repr(case))
     # Braced \ast protects the superscript from Markdown emphasis parsing.
     check_math(r"$x_i^{\ast}=(p_i-c^{\ast}q_i)_{+}$", "regression-ok")
-    check_math("\n$\n"+r"x_i^{\ast}=(p_i-c^{\ast}q_i)_{+}"+"\n$\n", "regression-ok")
+    check_math("\n" + chr(36)*2 + "\n" + r"x_i^{\ast}=(p_i-c^{\ast}q_i)_{+}" + "\n" + chr(36)*2 + "\n", "regression-ok")
     # Valid display equations keep equality attached to an operand.
     check_math("\n$$\nx=y\n$$\n", "regression-ok")
     check_math("\n$$\nx\n=y\n$$\n", "regression-ok")
