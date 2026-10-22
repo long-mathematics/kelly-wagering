@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "id": "2603.13581",
+      "source": "papers/2603.13581-implicit-cash/arxiv-v1/single_event_multinomial_kelly.tex",
+      "source_sha256": "66430ee4140d60b1a0a6d568120880a6533142b8cc56514d1ff4d694f5d9a3fa",
+      "pdf": "output/pdf/2603.13581-implicit-cash.pdf",
+      "pdf_sha256": "e08b652be73740eee2ad7adb2b623b6e2e36095811facf9b86c2576525392378",
+      "pages": 7
+    },
+    {
+      "id": "2603.24064",
+      "source": "papers/2603.24064-utility-invariant-support/arxiv-v1/utility_invariant_support_decoupling_revised.tex",
+      "source_sha256": "e5ed2c47138082d7eb58bef219ba7739840c78d5d990244366c18c4f0806c409",
+      "pdf": "output/pdf/2603.24064-utility-invariant-support.pdf",
+      "pdf_sha256": "bb88cd021821e1b68111eb142b72b1311231c12729085087648fb4fff1ed1b61",
+      "pages": 7
+    },
+    {
+      "id": "2603.26620",
+      "source": "papers/2603.26620-parlays-whitrow/arxiv-v1/optimal_parlay_whitrow_revised.tex",
+      "source_sha256": "e5a95ed921f3ce8c49e337cd4d33ecdf963400ca5ad4111f5a8e8403422bdd15",
+      "pdf": "output/pdf/2603.26620-parlays-whitrow.pdf",
+      "pdf_sha256": "c25ec0991a64fcbbdb0b22f00e8d8f1e683e3c7b5f63305c9c76c87620c0062d",
+      "pages": 10
+    },
+    {
+      "id": "2604.11577",
+      "source": "papers/2604.11577-risk-constrained/arxiv-v1/risk_constrained_kelly_prearxiv_final_v2.tex",
+      "source_sha256": "cdbf21c322f7710c0859de8e7a192d41af8ff168d1ca93f1ecd89b6184488fb5",
+      "pdf": "output/pdf/2604.11577-risk-constrained.pdf",
+      "pdf_sha256": "e3a9535dd2fbd1e1917152dedeef4916bd67b5ef4a5740c11d184c7800f1c888",
+      "pages": 16
+    },
+    {
+      "id": "2604.17577",
+      "source": "papers/2604.17577-quantile-kelly/arxiv-v1/finite_horizon_quantile_kelly_arxiv_proofread_v4.tex",
+      "source_sha256": "77f2c93d7c66606fd4ff6331b0522f9f96e050d63783388634be65ed4dcf625e",
+      "pdf": "output/pdf/2604.17577-quantile-kelly.pdf",
+      "pdf_sha256": "d0881552e03b0b7be3b6b7335fe377484217fa765991fab2b12ebc41b6fae69e",
+      "pages": 26
+    }
+  ]
+}
