@@ -57,7 +57,11 @@ def check_math(text: str, name: str) -> None:
             displayed = not displayed
             continue
         if displayed:
-            if line in {"=", "-", "---", "___"} or re.match(r"^[*+-]\s", line):
+            # A lone = is interpreted as Markdown/setext syntax, not TeX math.
+            # Treat this as a hard error even between valid $ boundaries.
+            if line == "=":
+                raise ValueError(f"Standalone equality sign in display: {name}:{index+1}")
+            if line in {"-", "---", "___"} or re.match(r"^[*+-]\\s", line):
                 raise ValueError(f"Markdown structure in display: {name}:{index+1}")
             inspect_expr(plain, name, index+1)
         else:
@@ -100,7 +104,9 @@ def main() -> None:
         r"\(x\)",
         r"\[x\]",
         "prose\n$$\nx=y\n$$\n",
-        "\n$$\nx=y\n$$\nprose",
+        "\n$\nx=y\n$\nprose",
+        "\n$\nx\n=\ny\n$\n",
+        "\n$\nx\n =   \ny\n$\n",
     ]
     for case in broken:
         try:
@@ -109,6 +115,9 @@ def main() -> None:
             pass
         else:
             raise ValueError("Known MathJax regression accepted: " + repr(case))
+    # Valid display equations keep equality attached to an operand.
+    check_math("\n$\nx=y\n$\n", "regression-ok")
+    check_math("\n$\nx\n=y\n$\n", "regression-ok")
     print("Catalog, original sources, Markdown links, and math render rules validated.")
 
 
