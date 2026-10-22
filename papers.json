@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "id": "2603.13581",
+      "slug": "implicit-cash",
+      "title": "Single-Event Multinomial Full Kelly via Implicit State Positions",
+      "source": "papers/2603.13581-implicit-cash/arxiv-v1/single_event_multinomial_kelly.tex",
+      "source_git_blob_sha": "d000ec6062fd4bc1696a956b8dbeef394413bde7",
+      "pdf": "output/pdf/2603.13581-implicit-cash.pdf",
+      "arxiv": "https://arxiv.org/abs/2603.13581",
+      "status": "arxiv-v1",
+      "arxiv_version": "v1"
+    },
+    {
+      "id": "2603.24064",
+      "slug": "utility-invariant-support",
+      "title": "Utility-Invariant Support Selection and Eventwise Decoupling for Simultaneous Independent Multi-Outcome Bets",
+      "source": "papers/2603.24064-utility-invariant-support/arxiv-v1/utility_invariant_support_decoupling_revised.tex",
+      "source_git_blob_sha": "204b4c7f423692ea98e6c6786738dc0745f5070d",
+      "pdf": "output/pdf/2603.24064-utility-invariant-support.pdf",
+      "arxiv": "https://arxiv.org/abs/2603.24064",
+      "status": "arxiv-v1",
+      "arxiv_version": "v1"
+    },
+    {
+      "id": "2603.26620",
+      "slug": "parlays-whitrow",
+      "title": "Optimal Parlay Wagering and Whitrow Asymptotics",
+      "source": "papers/2603.26620-parlays-whitrow/arxiv-v1/optimal_parlay_whitrow_revised.tex",
+      "source_git_blob_sha": "d35f78917d6e916df47f323730b40169f2a0fd82",
+      "pdf": "output/pdf/2603.26620-parlays-whitrow.pdf",
+      "arxiv": "https://arxiv.org/abs/2603.26620",
+      "status": "arxiv-v1",
+      "arxiv_version": "v1"
+    },
+    {
+      "id": "2604.11577",
+      "slug": "risk-constrained",
+      "title": "Risk-Constrained Kelly for Mutually Exclusive Outcomes",
+      "source": "papers/2604.11577-risk-constrained/arxiv-v1/risk_constrained_kelly_prearxiv_final_v2.tex",
+      "source_git_blob_sha": "79d3d880764fbe38e0359daf359d5fb750c65ad6",
+      "pdf": "output/pdf/2604.11577-risk-constrained.pdf",
+      "arxiv": "https://arxiv.org/abs/2604.11577",
+      "status": "arxiv-v1",
+      "arxiv_version": "v1"
+    },
+    {
+      "id": "2604.17577",
+      "slug": "quantile-kelly",
+      "title": "Exact Finite-Horizon Quantile Kelly for Repeated Multi-Outcome Events",
+      "source": "papers/2604.17577-quantile-kelly/arxiv-v1/finite_horizon_quantile_kelly_arxiv_proofread_v4.tex",
+      "source_git_blob_sha": "6188164d028e32fd17c4e58d484973b8e23e0710",
+      "pdf": "output/pdf/2604.17577-quantile-kelly.pdf",
+      "arxiv": "https://arxiv.org/abs/2604.17577",
+      "status": "arxiv-v1",
+      "arxiv_version": "v1"
+    }
+  ]
+}
