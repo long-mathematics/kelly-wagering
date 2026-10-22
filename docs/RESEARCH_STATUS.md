@@ -20,7 +20,7 @@ The October 16, 2026 Kelly master research record, version 1.5, is the more comp
 
 ### Information geometry of overround Kelly
 
-- Capped-shadow representation with $s_i^*=\min(q_i,p_i/c^*)$, where the normalizer satisfies $ \sum_i\min(q_i,p_i/c^*)=1 $.
+- Capped-shadow representation with $s_i^{\ast}=\min(q_i,p_i/c^{\ast})$, where the normalizer satisfies $\sum_i\min(q_i,p_i/c^{\ast})=1$.
 - Reverse-KL projection over the price-capped simplex; active/inactive coarsening, exact regret identities, projection inequalities, Pinsker-style estimates, and model-versus-allocation regret.
 - Median-based deterministic $O(n)$ arithmetic active-set selection using cumulative active price and inactive probability masses. Distinguish the classical optimizer from the later algorithmic presentation and specialized consequences.
 - **Status:** derivations and audit material in the master record; not an added public paper. The classical Kelly–entropy relation and general selection ingredients have antecedents.
