@@ -1,0 +1,73 @@
+name: Build and verify Kelly PDFs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/**"
+      - "papers.json"
+      - "README.md"
+      - "docs/**"
+      - "scripts/build_pdfs.py"
+      - "scripts/validate.py"
+      - "Makefile"
+      - ".github/workflows/build-pdfs.yml"
+  pull_request:
+    paths:
+      - "papers/**"
+      - "papers.json"
+      - "README.md"
+      - "docs/**"
+      - "scripts/build_pdfs.py"
+      - "scripts/validate.py"
+      - "Makefile"
+      - ".github/workflows/build-pdfs.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kelly-pdf-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install LaTeX and PDF inspection tools
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+            latexmk texlive-latex-extra texlive-fonts-recommended \
+            texlive-science lmodern poppler-utils
+      - name: Validate source snapshots, links and Markdown mathematics
+        run: make test
+      - name: Compile all five frozen arXiv papers
+        run: make pdf
+      - name: Verify PDF hashes, pages and source integrity
+        run: make check
+      - name: Upload build logs and PDF snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: kelly-arxiv-v1-pdfs
+          path: |
+            output/pdf/*.pdf
+            output/pdf/manifest.json
+            .build/*/build-console.txt
+          retention-days: 30
+      - name: Commit PDF snapshots
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add output/pdf/
+          if ! git diff --staged --quiet; then
+            git commit -m 'Compile five original Kelly arXiv v1 PDFs'
+            git pull --rebase origin main
+            git push origin main
+          fi
