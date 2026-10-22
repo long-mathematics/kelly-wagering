@@ -104,26 +104,6 @@ make check      # Check the committed PDFs against catalog and manifest
 
 The [PDF build workflow](.github/workflows/build-pdfs.yml) compiles the frozen sources and commits PDFs and a manifest. Compilation alone does not verify mathematical correctness.
 
-**GitHub Markdown mathematics:** use `$...## Publication and provenance
-
-- **arXiv:** All five papers above are publicly available. Imported sources reproduce the **v1 submissions**, not later working revisions.
-- **Other services:** Future versions hosted on **hexagonmath.org** or elsewhere will be listed per paper **after their public links and version identifiers are verified**. No hexagonmath.org submission is claimed here.
-- **Repository PDFs:** [output/pdf/](output/pdf/) contains compiled PDFs and a [hash/page manifest](output/pdf/manifest.json).
-- **Preservation:** Original arXiv source trees are frozen. Later changes belong in separate revised-manuscript directories with their own external version metadata.
-- **Research status:** Unpublished theorems, conditional claims, computations, and open problems are distinguished in [RESEARCH_STATUS.md](docs/RESEARCH_STATUS.md); an internal audit is not independent refereeing.
-
-## Build and checks
-
-On Debian/Ubuntu, install latexmk, texlive-latex-extra, texlive-fonts-recommended, texlive-science, lmodern, and poppler-utils.
-
-```sh
-make test       # Check catalog, frozen source blobs, links, and README math
-make pdf        # Rebuild the five PDFs and write the SHA-256 manifest
-make check      # Check the committed PDFs against catalog and manifest
-```
-
-The [PDF build workflow](.github/workflows/build-pdfs.yml) compiles the frozen sources and commits PDFs and a manifest. Compilation alone does not verify mathematical correctness.
-
- inline and isolated `$` display blocks separated from prose by blank lines. Never put an equality sign `=` **alone on its own line inside an equation**: Markdown can parse it as heading/setext syntax instead of mathematics. Keep `=` on the same line as an operand. Avoid manuscript-defined macros, `\operatorname`, `\,`, `\!`, and escaped braces in README math. The [validator](scripts/validate.py) enforces this and the other conservative MathJax-compatible conventions established for our other repositories.
+**GitHub Markdown mathematics:** use `$...$` inline and isolated `$$` display blocks separated from prose by blank lines. Never place `=` alone on a line inside an equation: GitHub may parse it as Markdown syntax rather than mathematics. Keep it on the same line as an operand. Avoid custom macros, `\operatorname`, `\,`, `\!`, and brace escapes. The [validator](scripts/validate.py) checks these conventions.
 
 [Paper catalog](papers.json) · [Research status](docs/RESEARCH_STATUS.md) · [PDF builds](output/pdf/) · [LaTeX sources](papers/)
