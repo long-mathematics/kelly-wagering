@@ -8,7 +8,7 @@ Manuscript author: **Christopher D. Long**.
 
 [Whitrow, *Algorithms for Optimal Allocation of Bets on Many Simultaneous Events* (2007), p. 622](https://doi.org/10.1111/j.1467-9876.2007.00594.x) observed that optimal simultaneous bets appear nearly proportional to isolated Kelly stakes and proposed proving this phenomenon.
 
-- **Whitrow's near-proportionality observation** — [Optimal Parlay Wagering and Whitrow Asymptotics](output/pdf/2603.26620-parlays-whitrow.pdf). For independent events with small edges and fixed active support, simultaneous singles-only stakes agree with isolated stakes through second order, with a cubic, event-specific shrinkage. This provides an **asymptotic explanation**, not a general proportionality theorem.
+- **Whitrow's near-proportionality observation** — [Optimal Parlay Wagering and Whitrow Asymptotics](output/pdf/2603.26620-parlays-whitrow.pdf). For independent events with small edges and fixed active support, simultaneous singles-only stakes agree with isolated stakes through second order, with a cubic, event-specific shrinkage. This provides an **asymptotic explanation**.
 
 ## Current papers
 
