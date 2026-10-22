@@ -8,7 +8,7 @@ from urllib.parse import unquote
 from build_pdfs import ROOT, catalog, validate_catalog
 
 ALLOWED = {
-    "Delta", "Gamma", "Phi", "Rightarrow", "beta", "epsilon", "eta",
+    "Delta", "Gamma", "Phi", "Rightarrow", "ast", "cdot", "beta", "epsilon", "eta",
     "frac", "ge", "in", "infty", "int", "kappa", "lambda", "le",
     "log", "longrightarrow", "mathbb", "mathcal", "max", "min",
     "mu", "pi", "prod", "qquad", "sigma", "sim", "sqrt", "sum",
@@ -18,6 +18,12 @@ ALLOWED = {
 
 
 def inspect_expr(expr: str, name: str, line: int) -> None:
+    # GitHub Markdown can consume bare * as emphasis before MathJax sees it.
+    # Write ^{\ast} for starred superscripts and \cdot for multiplication.
+    if "*" in expr:
+        raise ValueError(f"Unprotected asterisk in GitHub math: {name}:{line}")
+    if "_+" in expr:
+        raise ValueError(f"Use braces for positive-part subscript: {name}:{line}")
     if any(ch in expr for ch in "%#&"):
         raise ValueError(f"Unsafe TeX punctuation: {name}:{line}")
     for matched in re.finditer(r"\\([A-Za-z]+|.)", expr):
@@ -97,6 +103,9 @@ def main() -> None:
             raise ValueError("Missing paper from README: " + document["id"])
     broken = [
         r"$\operatorname{KL}(P,S)$",
+        r"$x_i^*=(p_i-c^*q_i)_+$",
+        r"$x_i^{*}=(p_i-c^{*}q_i)_{+}$",
+        r"$x_i^{\ast}=(p_i-c^{\ast}q_i)_+$",
         r"$\custommacro x$",
         r"$a\,b$",
         r"$a\!b$",
@@ -115,6 +124,9 @@ def main() -> None:
             pass
         else:
             raise ValueError("Known MathJax regression accepted: " + repr(case))
+    # Braced \ast protects the superscript from Markdown emphasis parsing.
+    check_math(r"$x_i^{\ast}=(p_i-c^{\ast}q_i)_{+}$", "regression-ok")
+    check_math("\n$\n"+r"x_i^{\ast}=(p_i-c^{\ast}q_i)_{+}"+"\n$\n", "regression-ok")
     # Valid display equations keep equality attached to an operand.
     check_math("\n$$\nx=y\n$$\n", "regression-ok")
     check_math("\n$$\nx\n=y\n$$\n", "regression-ok")
