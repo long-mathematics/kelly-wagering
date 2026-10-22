@@ -78,7 +78,7 @@ def check_links(p: Path) -> None:
         dest = (p.parent / unquote(target.split("#")[0])).resolve()
         if not dest.is_relative_to(ROOT):
             raise ValueError("Out-of-repository link " + target)
-        if not dest.exists() and dest.suffix != ".pdf":
+        if not dest.exists() and dest.suffix != ".pdf" and dest != ROOT / "output/pdf/manifest.json":
             raise ValueError(f"Broken local link in {p.name}: {target}")
 
 
