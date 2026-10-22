@@ -4,17 +4,13 @@ Mathematical foundations, information-theoretic methods, optimization algorithms
 
 Manuscript author: **Christopher D. Long**.
 
-## Questions answered and principal results
+## A question raised by Whitrow (2007)
 
-The five arXiv manuscripts settle the following **precise mathematical questions under their stated hypotheses**. This is not a claim that they resolve historically named open conjectures; the original single-event optimal-stake formula and parts of Kelly–entropy duality are classical.
+[Whitrow, *Algorithms for Optimal Allocation of Bets on Many Simultaneous Events* (2007), p. 622](https://doi.org/10.1111/j.1467-9876.2007.00594.x) observed numerically that, when relatively few independent bets are made simultaneously, their optimal sizes are nearly proportional to the isolated single-bet Kelly stakes. He explicitly suggested that a proof of this tentative hypothesis would be worthwhile.
 
-- **Can cash and optimal active support be described directly in state-price coordinates?** — [Implicit State Positions](output/pdf/2603.13581-implicit-cash.pdf). Cash creates a baseline in every state, yielding the optimal-stake formula $x_i=(p_i-cq_i)_+$ and a likelihood-ratio threshold.
-- **Is the active support for simultaneous independent events utility-invariant?** — [Utility-Invariant Support](output/pdf/2603.24064-utility-invariant-support.pdf). The funded outcomes are exactly the union of eventwise active sets for the paper's utility and positive-cash hypotheses.
-- **How does adding parlays change optimal Kelly wagering?** — [Parlays and Whitrow Asymptotics](output/pdf/2603.26620-parlays-whitrow.pdf). The complete multiplicatively priced parlay optimizer factorizes; in a low-edge fixed-support regime, the singles-only growth loss is fourth order and the stake corrections are cubic.
-- **Does a CRRA risk constraint alter the funded outcomes?** — [Risk-Constrained Kelly](output/pdf/2604.11577-risk-constrained.pdf). Under strict overround and the unique-prefix hypothesis, the drawdown-surrogate constraint changes the wealth profile but not the active set; logarithmic utility admits scalar calibration.
-- **Is exact finite-horizon quantile Kelly reducible to ordinary Kelly subproblems?** — [Finite-Horizon Quantile Kelly](output/pdf/2604.17577-quantile-kelly.pdf). Finite count-arrangement chambers yield shadow-Kelly subproblems, an exact but weak boundary recursion, and first-order asymptotic convergence to ordinary Kelly.
+- **Rigorous weak-edge explanation of Whitrow's observation** — [Optimal Parlay Wagering and Whitrow Asymptotics](output/pdf/2603.26620-parlays-whitrow.pdf). For independent events in a low-edge regime on a fixed active support, the simultaneous singles-only optimizer agrees with the separately optimized eventwise stakes through second order. Its first correction is a **cubic, event-specific scalar shrinkage**; permitting multiplicatively priced parlays improves optimal log-growth by at most fourth order. This provides an asymptotic answer to Whitrow's proposed proof question, **not** an unrestricted proportionality theorem for arbitrary odds, support changes, or nearly exhausted cash.
 
-Later [research results and open questions](docs/RESEARCH_STATUS.md) include capped-shadow KL geometry, linear-time support selection, laminar universality, independent singles optimization, fixed-dividend place/show/WPS markets, and endogenous parimutuel liquidity. These are **not yet fully imported as new publication-ready manuscripts**. In particular, a complete fast certified general WPS optimizer remains open.
+No other result in this repository is currently identified as a resolution of a comparably explicit, previously posed open conjecture. Other theorems and extensions are described in the paper summaries and [research status](docs/RESEARCH_STATUS.md).
 
 ## Current papers
 
@@ -28,25 +24,65 @@ Each entry links a compiled PDF, its **unaltered arXiv v1 LaTeX source**, and th
 
 ## Paper summaries
 
-### Implicit State Positions
+### Single-Event Multinomial Full Kelly via Implicit State Positions
 
-A cash fraction $c$ is equivalent, in terminal-wealth terms, to a baseline state stake $cq_i$ on each outcome. Explicit bets only top up favorable states to their probability weights. The paper gives a short proof of a classical result and an intuitive greedy support rule.
+[PDF](output/pdf/2603.13581-implicit-cash.pdf) · [LaTeX](papers/2603.13581-implicit-cash/arxiv-v1/single_event_multinomial_kelly.tex) · [arXiv](https://arxiv.org/abs/2603.13581)
 
-### Utility-Invariant Support and Eventwise Decoupling
+For a single event with mutually exclusive outcomes, probabilities $p_i$, and state prices $q_i$, the cash fraction $c$ is a baseline claim on every state. On a positive-cash optimum, a bet is funded only if the probability-to-price ratio exceeds that cash floor; the explicit stake and terminal wealth are
 
-For finitely many independent multi-outcome events, the correct continuation-factor identity makes it possible to determine funded outcomes eventwise, in advance of optimizing the chosen strictly increasing, strictly concave utility. Its support theorem requires the paper's precise cash and utility assumptions.
+$$
+x_i^*=(p_i-c^*q_i)_+,\qquad W_i^*=\max(c^*,p_i/q_i).
+$$
+
+The argument leads directly to a sorted likelihood-ratio support algorithm and a compact state-price derivation of the optimal portfolio. The **optimal-stake formula is classical**; the contribution is the implicit-position interpretation and streamlined proof. The later linear-time selection and capped-shadow refinements are recorded separately, not silently inserted into this original submission.
+
+**Status:** arXiv v1 source preserved, compiled PDF available.
+
+### Utility-Invariant Support Selection and Eventwise Decoupling
+
+[PDF](output/pdf/2603.24064-utility-invariant-support.pdf) · [LaTeX](papers/2603.24064-utility-invariant-support/arxiv-v1/utility_invariant_support_decoupling_revised.tex) · [arXiv](https://arxiv.org/abs/2603.24064)
+
+For several independent, finite-outcome events with simultaneous singles-only wagers, this paper isolates the funded-outcome question from the remaining nonlinear allocation problem. Summing active first-order conditions and comparing them with cash stationarity yields a continuation-factor identity that reduces active-support selection to separate single-event likelihood-ratio tests.
+
+Under the specified positive-cash and strictly increasing, strictly concave utility hypotheses, the active support in each event is the same as in that event's isolated optimizer: **support selection is utility-invariant and eventwise**, even though the optimal stake sizes remain coupled. The paper explains the relation to earlier single-event utility-invariance results and does not claim that arbitrary correlated or zero-cash markets decouple.
+
+**Status:** arXiv v1 source preserved, compiled PDF available.
 
 ### Optimal Parlay Wagering and Whitrow Asymptotics
 
-An eventwise product of isolated optimal wealth profiles solves the full, multiplicatively priced parlay market. The singles-only restriction has small asymptotic cost in the paper's low-edge regime; the cubic stake correction explains Whitrow's near-proportionality observation.
+[PDF](output/pdf/2603.26620-parlays-whitrow.pdf) · [LaTeX](papers/2603.26620-parlays-whitrow/arxiv-v1/optimal_parlay_whitrow_revised.tex) · [arXiv](https://arxiv.org/abs/2603.26620)
 
-### Risk-Constrained Kelly
+When all singles, doubles, and higher parlays are available at multiplicative prices for independent events, the complete optimal portfolio is the **outer product of the isolated eventwise Kelly strategies**. Consequently, optimal terminal wealth factorizes and a parlay is funded exactly when each of its constituent legs is funded. This gives a short implicit-cash proof of an equivalence previously established by Grant, Johnstone, and Kwon.
 
-Under strict overround, the CRRA optimizer retains the unconstrained active prefix despite a drawdown-surrogate constraint. For logarithmic utility, the constrained problem reduces to a scalar outer calibration and independent one-dimensional inner solves. The fair and subfair regimes require different treatment.
+Forbidding parlays restricts wealth to an additive profile. On a fixed active support and for small edges $\varepsilon$, a perturbative analysis shows that the simultaneous singles-only optimizer and isolated eventwise optimizer agree through second order, with an event-dependent cubic shrinkage and an $O(\varepsilon^4)$ growth-value penalty compared with the complete parlay menu. It gives a precise asymptotic explanation of the empirical phenomenon posed by Whitrow, with **no universal exact proportionality claim**.
 
-### Exact Finite-Horizon Quantile Kelly
+**Status:** arXiv v1 source preserved, compiled PDF available.
 
-On each positive-interior count-arrangement chamber, a terminal-wealth quantile is monomial and maximization reduces to a Kelly problem for a shadow empirical law. The full closed simplex requires face stratification and a weak exact boundary recursion. Stronger pruning and higher-order asymptotics remain open.
+### Risk-Constrained Kelly for Mutually Exclusive Outcomes
+
+[PDF](output/pdf/2604.11577-risk-constrained.pdf) · [LaTeX](papers/2604.11577-risk-constrained/arxiv-v1/risk_constrained_kelly_prearxiv_final_v2.tex) · [arXiv](https://arxiv.org/abs/2604.11577)
+
+In a single finite-outcome market, this paper optimizes CRRA utility subject to a drawdown-surrogate restriction on terminal wealth:
+
+$$
+\sum_i p_i W_i^{-\lambda}\le 1,\qquad \lambda>0.
+$$
+
+Under strict overround and the stated unique likelihood-ratio prefix assumption, imposing this restriction changes the funded wealth amounts but **does not change the active set** relative to the unconstrained solution. For logarithmic utility, the optimizer is obtained through a one-dimensional outer calibration and separate monotone scalar inner solves, with existence and uniqueness proved in the paper.
+
+The exact prefix theorem is not asserted unchanged in fair or subfair markets, where full-support behavior can occur. This distinction is important when transferring support statements to other market models.
+
+**Status:** arXiv v1 source preserved, compiled PDF available.
+
+### Exact Finite-Horizon Quantile Kelly for Repeated Multi-Outcome Events
+
+[PDF](output/pdf/2604.17577-quantile-kelly.pdf) · [LaTeX](papers/2604.17577-quantile-kelly/arxiv-v1/finite_horizon_quantile_kelly_arxiv_proofread_v4.tex) · [arXiv](https://arxiv.org/abs/2604.17577)
+
+For a fixed multi-outcome event repeated independently over a finite horizon, terminal wealth is a monomial in the one-period Arrow–Debreu wealth coordinates, indexed by the multinomial count vector. Its upper quantile is **piecewise monomial on the wealth simplex**, and on each positive-interior count-arrangement chamber, maximizing that quantile is equivalent to solving a Kelly problem for a count-based shadow law.
+
+The manuscript extends the chamber description to faces of the closed simplex, gives a weak exact recursive boundary algorithm, and proves first-order convergence of the optimal scaled log-quantile and its maximizing wealth profiles to ordinary Kelly. Binary and ternary examples illustrate the decomposition. Stronger boundary pruning, finer finite-horizon corrections, and general simultaneous-wager analogues remain open.
+
+**Status:** arXiv v1 source preserved, compiled PDF available.
 
 ## Publication and provenance
 
@@ -68,6 +104,26 @@ make check      # Check the committed PDFs against catalog and manifest
 
 The [PDF build workflow](.github/workflows/build-pdfs.yml) compiles the frozen sources and commits PDFs and a manifest. Compilation alone does not verify mathematical correctness.
 
-**GitHub Markdown mathematics:** use `$...$` inline and isolated `$$` display blocks separated from prose by blank lines. Avoid manuscript-defined macros, `\operatorname`, `\,`, `\!`, and escaped braces in README math. The [validator](scripts/validate.py) enforces the conservative MathJax-compatible subset established for our other repositories.
+**GitHub Markdown mathematics:** use `$...## Publication and provenance
+
+- **arXiv:** All five papers above are publicly available. Imported sources reproduce the **v1 submissions**, not later working revisions.
+- **Other services:** Future versions hosted on **hexagonmath.org** or elsewhere will be listed per paper **after their public links and version identifiers are verified**. No hexagonmath.org submission is claimed here.
+- **Repository PDFs:** [output/pdf/](output/pdf/) contains compiled PDFs and a [hash/page manifest](output/pdf/manifest.json).
+- **Preservation:** Original arXiv source trees are frozen. Later changes belong in separate revised-manuscript directories with their own external version metadata.
+- **Research status:** Unpublished theorems, conditional claims, computations, and open problems are distinguished in [RESEARCH_STATUS.md](docs/RESEARCH_STATUS.md); an internal audit is not independent refereeing.
+
+## Build and checks
+
+On Debian/Ubuntu, install latexmk, texlive-latex-extra, texlive-fonts-recommended, texlive-science, lmodern, and poppler-utils.
+
+```sh
+make test       # Check catalog, frozen source blobs, links, and README math
+make pdf        # Rebuild the five PDFs and write the SHA-256 manifest
+make check      # Check the committed PDFs against catalog and manifest
+```
+
+The [PDF build workflow](.github/workflows/build-pdfs.yml) compiles the frozen sources and commits PDFs and a manifest. Compilation alone does not verify mathematical correctness.
+
+ inline and isolated `$` display blocks separated from prose by blank lines. Never put an equality sign `=` **alone on its own line inside an equation**: Markdown can parse it as heading/setext syntax instead of mathematics. Keep `=` on the same line as an operand. Avoid manuscript-defined macros, `\operatorname`, `\,`, `\!`, and escaped braces in README math. The [validator](scripts/validate.py) enforces this and the other conservative MathJax-compatible conventions established for our other repositories.
 
 [Paper catalog](papers.json) · [Research status](docs/RESEARCH_STATUS.md) · [PDF builds](output/pdf/) · [LaTeX sources](papers/)
