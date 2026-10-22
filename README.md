@@ -29,7 +29,7 @@ Each entry links a compiled PDF, its **unaltered arXiv v1 LaTeX source**, and th
 For a single event with mutually exclusive outcomes, probabilities $p_i$, and state prices $q_i$, the cash fraction $c$ is a baseline claim on every state. On a positive-cash optimum, a bet is funded only if the probability-to-price ratio exceeds that cash floor; the explicit stake and terminal wealth are
 
 $$
-x_i^*=(p_i-c^*q_i)_+,\qquad W_i^*=\max(c^*,p_i/q_i).
+x_i^{\ast}=(p_i-c^{\ast}q_i)_{+},\qquad W_i^{\ast}=\max(c^{\ast},p_i/q_i).
 $$
 
 The argument leads directly to a sorted likelihood-ratio support algorithm and a compact state-price derivation of the optimal portfolio. The **optimal-stake formula is classical**; the contribution is the implicit-position interpretation and streamlined proof. The later linear-time selection and capped-shadow refinements are recorded separately, not silently inserted into this original submission.
@@ -102,6 +102,6 @@ make check      # Check the committed PDFs against catalog and manifest
 
 The [PDF build workflow](.github/workflows/build-pdfs.yml) compiles the frozen sources and commits PDFs and a manifest. Compilation alone does not verify mathematical correctness.
 
-**GitHub Markdown mathematics:** use `$...$` inline and isolated `$$` display blocks separated from prose by blank lines. Never place `=` alone on a line inside an equation: GitHub may parse it as Markdown syntax rather than mathematics. Keep it on the same line as an operand. Avoid custom macros, `\operatorname`, `\,`, `\!`, and brace escapes. The [validator](scripts/validate.py) checks these conventions.
+**GitHub Markdown mathematics:** use `$...$` inline and isolated `$$` display blocks separated from prose by blank lines. Never place `=` alone on a line inside an equation: GitHub may parse it as Markdown syntax rather than mathematics. Keep it on the same line as an operand. Write starred superscripts as `^{\ast}` and positive-part subscripts as `_{+}` to prevent Markdown from interpreting asterisks as emphasis. Avoid custom macros, `\operatorname`, `\,`, `\!`, and brace escapes. The [validator](scripts/validate.py) checks these conventions.
 
 [Paper catalog](papers.json) · [Research status](docs/RESEARCH_STATUS.md) · [PDF builds](output/pdf/) · [LaTeX sources](papers/)
